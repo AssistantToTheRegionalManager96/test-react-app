@@ -1,192 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect, act } from "react";
 import DoubleFilter from "../doubleFilter/doubleFilter";
 import SingleFilter from "../singleFilter/singleFilter";
 
 const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
     const [filtersShown, setFiltersShown] = useState(false);
+    const [activeFiltersCount, setActiveFiltersCount] = useState(0);
 
     const handleIdFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        })
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.idFilter = filter;
+        handleFiltersUpdate(filtersCopy);
     }
 
     const handleFirstNameFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        })
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.firstNameFilter = filter;
+        handleFiltersUpdate(filtersCopy);
     }
 
     const handleLastNameFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        })    
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.lastNameFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
 
     const handlePositionFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        })  
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.positionFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
 
     const handleOfficeFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        }) 
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.officeFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
 
     const handleAgeFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        }) 
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.ageFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
     
     const handleSalaryFilterUpdate = (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            ageFilter: filters.ageFilter,
-            startDateFilter: {
-                mode: filters.startDateFilter.mode,
-                specific: filters.startDateFilter.specific,
-                lower: filters.startDateFilter.lower,
-                upper: filters.startDateFilter.upper
-            },
-            salaryFilter: {
-                mode: filter.mode,
-                specific: filter.specific,
-                lower: filter.lower,
-                upper: filter.upper
-            }
-        }) 
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.salaryFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
 
     const handleStartDateFilterUpdate= (filter) => {
-        handleFiltersUpdate({
-            idFilter: filters.idFilter,
-            firstNameFilter: filters.firstNameFilter,
-            lastNameFilter: filters.lastNameFilter,
-            positionFilter: filters.positionFilter,
-            officeFilter: filters.officeFilter,
-            startDateFilter: {
-                mode: filter.mode,
-                specific: filter.specific,
-                lower: filter.lower,
-                upper: filter.upper
-            },
-            salaryFilter: {
-                mode: filters.salaryFilter.mode,
-                specific: filters.salaryFilter.specific,
-                lower: filters.salaryFilter.lower,
-                upper: filters.salaryFilter.upper
-            }
-        }) 
+        var filtersCopy = JSON.parse(JSON.stringify(filters));
+        filtersCopy.startDateFilter = filter;
+        handleFiltersUpdate(filtersCopy); 
     }
+    
+    useEffect(() => {
+        var count = 0;
+        if (filters.idFilter != "") count++
+        if (filters.firstNameFilter != "") count++;
+        if (filters.lastNameFilter != "") count++;
+        if (filters.positionFilter != "") count++;
+        if (filters.officeFilter != "") count++;
+        if (filters.ageFilter != "") count++;
+        if ((filters.salaryFilter.mode == 0 && filters.salaryFilter.specific != "") 
+            || (filters.salaryFilter.mode == 1 && (filters.salaryFilter.lower != "" || filters.salaryFilter.upper != ""))) count++;
+        if ((filters.startDateFilter.mode == 0 && filters.startDateFilter.specific != "") 
+            || (filters.startDateFilter.mode == 1 && (filters.startDateFilter.lower != "" || filters.startDateFilter.upper != ""))) count++;
+
+        setActiveFiltersCount(count);
+    })
 
     return (
         <div className="container border border-1 rounded">
@@ -195,7 +77,10 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
                     Employee Table
                 </h5>
                 <div className="col-6 d-flex align-items-center justify-content-end">
-                    <button className="btn btn-transparent text-light" onClick={() => setFiltersShown(!filtersShown)}>Filters (0 Active)</button>
+                    <button className="btn btn-transparent text-light" onClick={() => setFiltersShown(!filtersShown)}>
+                        {filtersShown ? "Hide Filters" : "Show Filters"}
+                        {` (${activeFiltersCount} active)`}
+                    </button>
                 </div>
             </div>
 

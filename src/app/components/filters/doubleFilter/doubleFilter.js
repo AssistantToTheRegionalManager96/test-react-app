@@ -1,5 +1,3 @@
-const { useState, useEffect } = require("react");
-
 const DoubleFilter = ({ type, step, min, max, filter, handleUpdateFilter, children }) => {
 
     return (
