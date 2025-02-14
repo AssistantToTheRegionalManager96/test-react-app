@@ -53,7 +53,30 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
         filtersCopy.startDateFilter = filter;
         handleFiltersUpdate(filtersCopy); 
     }
-    
+
+    const handleClearAllFilters = () => {
+        handleFiltersUpdate({
+            idFilter: "",
+            firstNameFilter: "",
+            lastNameFilter: "",
+            positionFilter: "",
+            officeFilter: "",
+            ageFilter: "",
+            startDateFilter: {
+                mode: 0,
+                specific: "",
+                lower: "",
+                upper: ""
+            },
+            salaryFilter: {
+                mode: 0,
+                specific: "",
+                lower: "",
+                upper: ""
+            }
+        })
+    }
+
     useEffect(() => {
         var count = 0;
         if (filters.idFilter != "") count++
@@ -71,10 +94,9 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
     })
 
     return (
-        <div className="container border border-1 rounded">
-            <div className="row bg-secondary rounded">
+        <div className="container border border-1">
+            <div className="row bg-secondary">
                 <h5 className="col-6 d-flex align-items-center justify-content-start text-light">
-                    Employee Table
                 </h5>
                 <div className="col-6 d-flex align-items-center justify-content-end">
                     <button className="btn btn-transparent text-light" onClick={() => setFiltersShown(!filtersShown)}>
@@ -116,13 +138,21 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
                         </div>
                     </div>
 
-                    <div className="row pt-1 pb-1 align-items-center">
+                    <div className="row pt-1 pb-1 align-items-center border-bottom">
                         <div className="col-6 border-end">
                             <DoubleFilter type="date" min="2024-01-01" filter={filters.startDateFilter} handleUpdateFilter={handleStartDateFilterUpdate}>Start Date</DoubleFilter>
                         </div>
                         <div className="col-6">
                             <DoubleFilter type="number" step={.01} min={0} filter={filters.salaryFilter} handleUpdateFilter={handleSalaryFilterUpdate}>Salary</DoubleFilter>
                         </div>
+                    </div>
+
+                    <div className="row pt-1 pb-1 align-items-center">
+                        <div className="col-4"></div>
+                        <div className="col-4 d-flex align-items-center justify-content-center">
+                            <button className="btn btn-primary" onClick={handleClearAllFilters}>Clear All Filters</button>
+                        </div>
+                        <div className="col-4"></div>
                     </div>
                 </div>
             </div>
