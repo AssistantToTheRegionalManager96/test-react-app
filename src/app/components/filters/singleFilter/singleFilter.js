@@ -1,11 +1,5 @@
-const { useState, useEffect } = require("react");
 
-const SingleFilter = ({ type, step, min, max, update, children }) => {
-    const [filter, setFilter] = useState([])
-
-    useEffect(() => {
-        update(filter);
-    })
+const SingleFilter = ({ type, step, min, max, filter, handleUpdateFilter, children }) => {
 
     return (
         <div className="container">
@@ -20,14 +14,14 @@ const SingleFilter = ({ type, step, min, max, update, children }) => {
                         <div className={`col-2 d-flex align-items-center justify-content-start smallText`}></div>
                         <div className="col-3 pe-1 ps-1">
                             <input type={type} step={step} className="form-control form-control-sm" min={min} max={max}
-                            value={filter} onChange={(e) => setFilter(e.target.value)}/>
+                            value={filter} onChange={(e) => handleUpdateFilter(e.target.value)}/>
                         </div>
                         <div className="col-5"></div>
                     </div>
                 </div>
 
                 <div className="col-2 d-flex align-items-center justify-content-center">
-                    <button className="btn btn-primary btn-sm" onClick={() => setFilter("")}>Clear</button>
+                    <button className="btn btn-primary btn-sm" onClick={() => handleUpdateFilter("")}>Clear</button>
                 </div>
             </div>
         </div>

@@ -1,16 +1,6 @@
 const { useState, useEffect } = require("react");
 
-const DoubleFilter = ({ type, step, min, max, update, children }) => {
-    const [filter, setFilter] = useState({
-        inputType: 0,
-        specificInput: "",
-        rangeInputLower: "",
-        rangeInputUpper: "",
-    })
-
-    useEffect(() => {
-        update(filter);
-    })
+const DoubleFilter = ({ type, step, min, max, filter, handleUpdateFilter, children }) => {
 
     return (
         <div className="container">
@@ -22,23 +12,23 @@ const DoubleFilter = ({ type, step, min, max, update, children }) => {
                     <div className="row align-items-center gap-1">
                         <div className="col-1">
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name={`${children}Filter`} checked={filter.inputType == 0} 
-                                onChange={() => setFilter({
-                                    inputType: 0, 
-                                    specificInput: filter.specificInput, 
-                                    rangeInputLower: filter.rangeInputLower, 
-                                    rangeInputUpper: filter.rangeInputUpper 
+                                <input className="form-check-input" type="radio" name={`${children}Filter`} checked={filter.mode == 0} 
+                                onChange={() => handleUpdateFilter({
+                                    mode: 0, 
+                                    specific: filter.specific, 
+                                    lower: filter.lower, 
+                                    upper: filter.upper 
                                     })}/>
                             </div>
                         </div>
                         <div className={`col-2 d-flex align-items-center justify-content-start smallText`}>Equal</div>
                         <div className="col-3 pe-1 ps-1">
-                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max} disabled={filter.inputType == 1}
-                            value={filter.specificInput} onChange={(e) => setFilter({
-                                inputType: filter.inputType, 
-                                specificInput: e.target.value, 
-                                rangeInputLower: filter.rangeInputLower, 
-                                rangeInputUpper: filter.rangeInputUpper 
+                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max} disabled={filter.mode == 1}
+                            value={filter.specific} onChange={(e) => handleUpdateFilter({
+                                mode: filter.mode, 
+                                specific: e.target.value, 
+                                lower: filter.lower, 
+                                upper: filter.upper 
                                 })}/>
                         </div>
                         <div className="col-5"></div>
@@ -47,44 +37,44 @@ const DoubleFilter = ({ type, step, min, max, update, children }) => {
                     <div className="row align-items-center gap-1">
                         <div className="col-1">
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name={`${children}Filter`} checked={filter.inputType == 1} 
-                                onChange={() => setFilter({
-                                inputType: 1, 
-                                specificInput: filter.specificInput, 
-                                rangeInputLower: filter.rangeInputLower, 
-                                rangeInputUpper: filter.rangeInputUpper 
+                                <input className="form-check-input" type="radio" name={`${children}Filter`} checked={filter.mode == 1} 
+                                onChange={() => handleUpdateFilter({
+                                mode: 1, 
+                                specific: filter.specific, 
+                                lower: filter.lower, 
+                                upper: filter.upper 
                                 })}/>
                             </div>
                         </div>
                         <div className={`col-2 d-flex align-items-center justify-content-start smallText`}>Between</div>
                         <div className="col-3 pe-1 ps-1">
-                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max}  disabled={filter.inputType == 0} 
-                            value={filter.rangeInputLower} onChange={(e) => setFilter({
-                                inputType: filter.inputType, 
-                                specificInput: filter.specificInput, 
-                                rangeInputLower: e.target.value, 
-                                rangeInputUpper: filter.rangeInputUpper 
+                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max}  disabled={filter.mode == 0} 
+                            value={filter.lower} onChange={(e) => handleUpdateFilter({
+                                mode: filter.mode, 
+                                specific: filter.specific, 
+                                lower: e.target.value, 
+                                upper: filter.upper 
                                 })}/>
                         </div>
                         <div className={`col-1 d-flex align-items-center justify-content-center smallText`}>and</div>
                         <div className="col-3 pe-1 ps-1">
-                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max}  disabled={filter.inputType == 0}
-                            value={filter.rangeInputUpper} onChange={(e) => setFilter({
-                                inputType: filter.inputType, 
-                                specificInput: filter.specificInput, 
-                                rangeInputLower: filter.rangeInputLower, 
-                                rangeInputUpper: e.target.value 
+                            <input type={type} step={step} className="form-control form-control-sm" min={min} max={max}  disabled={filter.mode == 0}
+                            value={filter.upper} onChange={(e) => handleUpdateFilter({
+                                mode: filter.mode, 
+                                specific: filter.specific, 
+                                lower: filter.lower, 
+                                upper: e.target.value 
                                 })}/>
                         </div>
                     </div>
                 </div>
 
                 <div className="col-2 d-flex align-items-center justify-content-center">
-                    <button className="btn btn-primary btn-sm" onClick={() => setFilter({
-                                inputType: 0, 
-                                specificInput: "", 
-                                rangeInputLower: "", 
-                                rangeInputUpper: "" 
+                    <button className="btn btn-primary btn-sm" onClick={() => handleUpdateFilter({
+                                mode: 0, 
+                                specific: "", 
+                                lower: "", 
+                                upper: "" 
                                 })}>Clear</button>
                 </div>
             </div>

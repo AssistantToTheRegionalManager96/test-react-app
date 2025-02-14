@@ -6,7 +6,26 @@ import EmployeeTableFilters from "../filters/employeeTableFilters/employeeTableF
 
 const EmployeeTable = () => {
     const [employees, setEmployees] = useState([]) // [state, method to change state] = useState(initial state)
-    const [employeesFilteredById, setEmployeesFilteredById] = useState([])
+    const [filters, setFilters] = useState({
+        idFilter: "",
+        firstNameFilter: "",
+        lastNameFilter: "",
+        positionFilter: "",
+        officeFilter: "",
+        ageFilter: "",
+        startDateFilter: {
+            mode: 0,
+            specific: "",
+            lower: "",
+            upper: ""
+        },
+        salaryFilter: {
+            mode: 0,
+            specific: "",
+            lower: "",
+            upper: ""
+        }
+    })
 
 
     useEffect(() => {
@@ -24,18 +43,14 @@ const EmployeeTable = () => {
         fetchEmployees();
     }, []);
 
-    const filterId = (id) => {
-        var tableFiltered = employees.filter(x => x.id == id);
-        console.log(tableFiltered);
-
-        setEmployeesFilteredById(tableFiltered);
+    const handleFiltersUpdate = (filtersUpdate) => {
+        setFilters(filtersUpdate);
     }
-
 
     return (
         <div className="container">
             <div className="row mt-5">
-                <EmployeeTableFilters filterId = {filterId}/>
+                <EmployeeTableFilters filters={filters} handleFiltersUpdate={handleFiltersUpdate}/>
             </div>
             <div className="row mt-3">
                 <table className="table table-striped">

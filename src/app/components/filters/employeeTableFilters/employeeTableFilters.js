@@ -2,58 +2,190 @@ import { useState } from "react";
 import DoubleFilter from "../doubleFilter/doubleFilter";
 import SingleFilter from "../singleFilter/singleFilter";
 
-const EmployeeTableFilters = () => {
+const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
     const [filtersShown, setFiltersShown] = useState(false);
-    const [filters, setFilters] = useState({
-        idFilter: "",
-        firstNameFilter: "",
-        lastNameFilter: "",
-        positionFilter: "",
-        officeFilter: "",
-        startDateFilter: {
-            mode: 0,
-            specific: "",
-            lower: "",
-            upper: ""
-        },
-        salaryFilter: {
-            mode: 0,
-            specific: "",
-            lower: "",
-            upper: ""
-        }
-    })
 
     const handleIdFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        })
     }
 
     const handleFirstNameFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        })
     }
 
     const handleLastNameFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        })    
     }
 
     const handlePositionFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        })  
     }
 
     const handleOfficeFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        }) 
     }
 
     const handleAgeFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        }) 
     }
     
     const handleSalaryFilterUpdate = (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            ageFilter: filters.ageFilter,
+            startDateFilter: {
+                mode: filters.startDateFilter.mode,
+                specific: filters.startDateFilter.specific,
+                lower: filters.startDateFilter.lower,
+                upper: filters.startDateFilter.upper
+            },
+            salaryFilter: {
+                mode: filter.mode,
+                specific: filter.specific,
+                lower: filter.lower,
+                upper: filter.upper
+            }
+        }) 
     }
 
     const handleStartDateFilterUpdate= (filter) => {
-        console.log(filter);
+        handleFiltersUpdate({
+            idFilter: filters.idFilter,
+            firstNameFilter: filters.firstNameFilter,
+            lastNameFilter: filters.lastNameFilter,
+            positionFilter: filters.positionFilter,
+            officeFilter: filters.officeFilter,
+            startDateFilter: {
+                mode: filter.mode,
+                specific: filter.specific,
+                lower: filter.lower,
+                upper: filter.upper
+            },
+            salaryFilter: {
+                mode: filters.salaryFilter.mode,
+                specific: filters.salaryFilter.specific,
+                lower: filters.salaryFilter.lower,
+                upper: filters.salaryFilter.upper
+            }
+        }) 
     }
 
     return (
@@ -71,40 +203,40 @@ const EmployeeTableFilters = () => {
                 <div className="container">
                     <div className="row pt-1 pb-1 align-items-center border-bottom">
                         <div className="col-6 border-end">
-                            <SingleFilter type="number" step={1} min={0} update={handleIdFilterUpdate}>Id</SingleFilter>
+                            <SingleFilter type="number" step={1} min={0} filter={filters.idFilter} handleUpdateFilter={handleIdFilterUpdate}>Id</SingleFilter>
                         </div>
 
                         <div className="col-6 ">
-                            <SingleFilter type="number" step={1} min={0} update={handleAgeFilterUpdate}>Age</SingleFilter>
+                            <SingleFilter type="number" step={1} min={0} filter={filters.ageFilter} handleUpdateFilter={handleAgeFilterUpdate}>Age</SingleFilter>
                         </div>
                     </div>
 
                     <div className="row pt-1 pb-1 align-items-center border-bottom">
                         <div className="col-6 border-end">
-                            <SingleFilter type="text" update={handleFirstNameFilterUpdate}>First Name</SingleFilter>
+                            <SingleFilter type="text" filter={filters.firstNameFilter} handleUpdateFilter={handleFirstNameFilterUpdate}>First Name</SingleFilter>
                         </div>
 
                         <div className="col-6 ">
-                            <SingleFilter type="text" update={handleLastNameFilterUpdate}>Last Name</SingleFilter>
+                            <SingleFilter type="text" filter={filters.lastNameFilter} handleUpdateFilter={handleLastNameFilterUpdate}>Last Name</SingleFilter>
                         </div>
                     </div>
 
                     <div className="row pt-1 pb-1 align-items-center border-bottom">
                         <div className="col-6 border-end">
-                            <SingleFilter type="text" update={handlePositionFilterUpdate}>Position</SingleFilter>
+                            <SingleFilter type="text" filter={filters.positionFilter} handleUpdateFilter={handlePositionFilterUpdate}>Position</SingleFilter>
                         </div>
 
                         <div className="col-6 ">
-                            <SingleFilter type="text" update={handleOfficeFilterUpdate}>Office</SingleFilter>
+                            <SingleFilter type="text" filter={filters.officeFilter} handleUpdateFilter={handleOfficeFilterUpdate}>Office</SingleFilter>
                         </div>
                     </div>
 
                     <div className="row pt-1 pb-1 align-items-center">
                         <div className="col-6 border-end">
-                            <DoubleFilter type="date" min="2024-01-01" update={handleStartDateFilterUpdate}>Start Date</DoubleFilter>
+                            <DoubleFilter type="date" min="2024-01-01" filter={filters.startDateFilter} handleUpdateFilter={handleStartDateFilterUpdate}>Start Date</DoubleFilter>
                         </div>
                         <div className="col-6">
-                            <DoubleFilter type="number" step={.01} min={0} update={handleSalaryFilterUpdate}>Salary</DoubleFilter>
+                            <DoubleFilter type="number" step={.01} min={0} filter={filters.salaryFilter} handleUpdateFilter={handleSalaryFilterUpdate}>Salary</DoubleFilter>
                         </div>
                     </div>
                 </div>
