@@ -1,1 +1,12 @@
+.columnLeft {
+    text-align: left;
+}
 
+.columnRight {
+    text-align: right;
+}
+
+.fixedTable {
+    table-layout: fixed;
+    word-wrap:break-word;
+}

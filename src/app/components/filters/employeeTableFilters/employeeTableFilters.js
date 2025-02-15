@@ -94,7 +94,7 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
     })
 
     return (
-        <div className="container border border-1">
+        <div className="container bg-light">
             <div className="row bg-secondary">
                 <h5 className="col-6 d-flex align-items-center justify-content-start text-light">
                 </h5>
@@ -140,7 +140,7 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
 
                     <div className="row pt-1 pb-1 align-items-center border-bottom">
                         <div className="col-6 border-end">
-                            <DoubleFilter type="date" min="2024-01-01" filter={filters.startDateFilter} handleUpdateFilter={handleStartDateFilterUpdate}>Start Date</DoubleFilter>
+                            <DoubleFilter type="date" min="2000-01-01" filter={filters.startDateFilter} handleUpdateFilter={handleStartDateFilterUpdate}>Start Date</DoubleFilter>
                         </div>
                         <div className="col-6">
                             <DoubleFilter type="number" step={.01} min={0} filter={filters.salaryFilter} handleUpdateFilter={handleSalaryFilterUpdate}>Salary</DoubleFilter>
