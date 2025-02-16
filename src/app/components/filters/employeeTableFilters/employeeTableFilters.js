@@ -6,11 +6,11 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
     const [filtersShown, setFiltersShown] = useState(false);
     const [activeFiltersCount, setActiveFiltersCount] = useState(0);
 
-    const handleIdFilterUpdate = (filter) => {
-        var filtersCopy = JSON.parse(JSON.stringify(filters));
-        filtersCopy.idFilter = filter;
-        handleFiltersUpdate(filtersCopy);
-    }
+    // const handleIdFilterUpdate = (filter) => {
+    //     var filtersCopy = JSON.parse(JSON.stringify(filters));
+    //     filtersCopy.idFilter = filter;
+    //     handleFiltersUpdate(filtersCopy);
+    // }
 
     const handleFirstNameFilterUpdate = (filter) => {
         var filtersCopy = JSON.parse(JSON.stringify(filters));
@@ -56,7 +56,7 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
 
     const handleClearAllFilters = () => {
         handleFiltersUpdate({
-            idFilter: "",
+            // idFilter: "",
             firstNameFilter: "",
             lastNameFilter: "",
             positionFilter: "",
@@ -79,7 +79,7 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
 
     useEffect(() => {
         var count = 0;
-        if (filters.idFilter != "") count++
+        // if (filters.idFilter != "") count++
         if (filters.firstNameFilter != "") count++;
         if (filters.lastNameFilter != "") count++;
         if (filters.positionFilter != "") count++;
@@ -109,11 +109,11 @@ const EmployeeTableFilters = ({filters, handleFiltersUpdate}) => {
             <div className={`row ${filtersShown ? "" : "d-none"}`}>
                 <div className="container">
                     <div className="row pt-1 pb-1 align-items-center border-bottom">
-                        <div className="col-6 border-end">
-                            <SingleFilter type="number" step={1} min={0} filter={filters.idFilter} handleUpdateFilter={handleIdFilterUpdate}>Id</SingleFilter>
+                        <div className="col-6">
+                            {/* <SingleFilter type="number" step={1} min={0} filter={filters.idFilter} handleUpdateFilter={handleIdFilterUpdate}>Id</SingleFilter> */}
                         </div>
 
-                        <div className="col-6 ">
+                        <div className="col-6 border-start">
                             <SingleFilter type="number" step={1} min={0} filter={filters.ageFilter} handleUpdateFilter={handleAgeFilterUpdate}>Age</SingleFilter>
                         </div>
                     </div>

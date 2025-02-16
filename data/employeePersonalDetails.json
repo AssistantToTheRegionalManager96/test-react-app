@@ -1,0 +1,28 @@
+[
+    {
+        "id": 3,
+        "address": {
+            "line1": "Test1",
+            "line2": "Test2",
+            "city": "Test3",
+            "country": {
+                "name": "Test4",
+                "dial_code": "+358",
+                "code": "AX"
+            },
+            "postalCode": "Test5"
+        },
+        "phone": {
+            "country": {
+                "name": "Test4",
+                "dial_code": "+358",
+                "code": "AX"
+            },
+            "number": 123456789
+        },
+        "email": {
+            "userName": "test",
+            "domain": "testdomain"
+        }
+    }
+]

@@ -1,8 +1,10 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import EmployeeTableRow from "../employeeTableRow/employeeTableRow";
+import { useState, useEffect, useRef, createElement } from "react"
+import { createRoot } from 'react-dom/client';
 import EmployeeTableFilters from "../filters/employeeTableFilters/employeeTableFilters";
+import { useRouter } from 'next/navigation'
+
 
 import DataTable from 'datatables.net-react';
 import DT from 'datatables.net-bs5';
@@ -17,7 +19,7 @@ const EmployeeTable = () => {
 
     const [employees, setEmployees] = useState([]) // [state, method to change state] = useState(initial state)
     const [filters, setFilters] = useState({
-        idFilter: "",
+        // idFilter: "",
         firstNameFilter: "",
         lastNameFilter: "",
         positionFilter: "",
@@ -38,6 +40,7 @@ const EmployeeTable = () => {
     })
 
     const table = useRef();
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -56,7 +59,7 @@ const EmployeeTable = () => {
     }, []);
 
     useEffect(() => {
-        table.current.dt().columns('id:name').search(filters.idFilter, { exact: true}).draw();
+        // table.current.dt().columns('id:name').search(filters.idFilter, { exact: true}).draw();
         table.current.dt().columns('firstName:name').search(filters.firstNameFilter).draw();
         table.current.dt().columns('lastName:name').search(filters.lastNameFilter).draw();
         table.current.dt().columns('position:name').search(filters.positionFilter).draw();
@@ -92,14 +95,26 @@ const EmployeeTable = () => {
         setFilters(filtersUpdate);
     }
 
+    const handleEmployeeDetails = (id) => {
+        router.push(`/employees/${id}`);
+    }
+
+
     const columns = [
-        {data: 'id', title: 'Id', name: 'id', render:DT.render.text(), width: '5%', className: 'dt-end text-end' },
+        {data: 'id', title: '', name: 'action', width: '5%', createdCell: (td, cellData) => {
+            var button = createElement("button", 
+                { className: 'btn btn-primary btn-sm rounded-circle', onClick: () => handleEmployeeDetails(cellData)},
+                 createElement("i", { className: 'bi bi-eye-fill' }));
+            const root = createRoot(td);
+            root.render(button);
+
+        },  className: 'dt-center text-center' },
         {data: 'firstName', title: 'First Name', name: 'firstName', render:DT.render.text(), width: '15%', className: 'dt-start text-start'  },
         {data: 'lastName', title: 'Last Name', name: 'lastName', render:DT.render.text(), width: '15%', className: 'dt-start text-start'  },
         {data: 'position', title: 'Position', name: 'position', render:DT.render.text(), width: '20%', className: 'dt-start text-start'  },
         {data: 'office', title: 'Office', name: 'office', render:DT.render.text(), width: '15%', className: 'dt-start text-start'  },
         {data: 'age', title: 'Age', name: 'age', render:DT.render.number('', '', 0), width: '5%', className: 'dt-end text-end'  },
-        {data: 'startDate', title: 'Start Date', name: 'startDate', render:DT.render.date(), width: '10%', className: 'dt-start text-start'  },
+        {data: 'startDate', title: 'Start Date', name: 'startDate', render:DT.render.text(), width: '10%', className: 'dt-start text-start'  },
         {data: 'salary', title: 'Salary', name: 'salary', render:DT.render.number(',', '.', 2, '$'), width: '15%', className: 'dt-end text-end'  }
     ]
 
@@ -113,6 +128,7 @@ const EmployeeTable = () => {
                     ref={table}
                     columns={columns} 
                     data={employees} 
+                    onClick={handleEmployeeDetails}
                     className={`table table-striped table-sm ${styles.fixedTable}`}
                     options={{
                         paging: true,
@@ -126,7 +142,8 @@ const EmployeeTable = () => {
                     }}>
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            {/* <th>Id</th> */}
+                            <th></th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Position</th>

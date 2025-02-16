@@ -1,0 +1,19 @@
+[
+    {
+        "id": 3,
+        "emergencyContactGiven": true,
+        "name": "Test",
+        "phone": {
+            "country": {
+                "name": "Testistan",
+                "dial_code": "+1",
+                "code": "US"
+            },
+            "number": 999999999
+        },
+        "email": {
+            "userName": "EmergencyTest",
+            "domain": "testdomain"
+        }
+    }
+]
